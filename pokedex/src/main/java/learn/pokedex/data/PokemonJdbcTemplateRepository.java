@@ -17,8 +17,10 @@ public class PokemonJdbcTemplateRepository implements PokemonRepository  {
 
     @Override
     public List<Pokemon> findAll() {
-        final String sql = "select id, japanese_name"
-                + "from pokemon;";
+        final String sql = """
+                select id, japanese_name
+                from pokemon;
+                """;
         return jdbcTemplate.query(sql, new PokemonMapper());
     }
 
