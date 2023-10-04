@@ -1,5 +1,6 @@
 package learn.pokedex.data;
 
+import learn.pokedex.data.mappers.PokemonMapper;
 import learn.pokedex.models.Pokemon;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,13 +23,13 @@ public class PokemonJdbcTemplateRepository implements PokemonRepository  {
     }
 
     @Override
-    public Pokemon findById(int pokemonId) {
+    public Pokemon findById(int id) {
 
         final String sql = "select id, japanese_name"
                 + "from pokemon "
-                + "where pokemon_id = ?;";
+                + "where id = ?;";
 
-        Pokemon pokemon = jdbcTemplate.query(sql, new PokemonMapper(), pokemonId).stream()
+        Pokemon pokemon = jdbcTemplate.query(sql, new PokemonMapper(), id).stream()
                 .findFirst().orElse(null);
 
         return pokemon;

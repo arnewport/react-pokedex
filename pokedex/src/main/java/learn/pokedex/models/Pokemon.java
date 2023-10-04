@@ -3,14 +3,20 @@ package learn.pokedex.models;
 import java.util.Objects;
 
 public class Pokemon {
+    /*
+    public Pokemon() {
+    }
+     */
 
     private int id;
     private String japaneseName;
 
+    /*
     public Pokemon(int id, String japaneseName) {
         this.id = id;
         this.japaneseName = japaneseName;
     }
+     */
 
     public int getId() {
         return id;
@@ -20,11 +26,11 @@ public class Pokemon {
         this.id = id;
     }
 
-    public String getName() {
+    public String getJapaneseName() {
         return japaneseName;
     }
 
-    public void setName(String japaneseName) {
+    public void setJapaneseName(String japaneseName) {
         this.japaneseName = japaneseName;
     }
 
