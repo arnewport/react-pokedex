@@ -1,4 +1,4 @@
-import usePokemonLinks from '../hooks/usePokemonLinks';
+// import usePokemonLinks from '../hooks/usePokemonLinks';
 // import PaginatedItems from './PaginatedItems';  
 
 function PokemonTable({pokemonArray}) {
