@@ -34,8 +34,10 @@ export default function usePokemonLinks() {
       };
 
       try {
-        const pokeLinkResponse = await Promise.all(linkArray.pokeLinks.map(fetchData));
-        const japaneseLinkResponse = await Promise.all(linkArray.japaneseLinks.map(fetchData));
+        const [pokeLinkResponse, japaneseLinkResponse] = await Promise.all([
+            Promise.all(linkArray.pokeLinks.map(fetchData)), 
+            Promise.all(linkArray.japaneseLinks.map(fetchData))
+        ]);
 
         const combinedData = pokeLinkResponse.map((item, index) => ({
           ...item,
@@ -43,9 +45,9 @@ export default function usePokemonLinks() {
         }));
 
         setPokemonArray(combinedData);
-        setLoading(false);
       } catch (error) {
         console.error(error);
+      } finally {
         setLoading(false);
       }
     };
