@@ -14,8 +14,8 @@ if (loading) {
                     <tr>
                         <th>Number</th>
                         <th>Picture</th>
-                        <th>Japanese</th>
-                        <th>English</th>
+                        <th>Japanese Name</th>
+                        <th>English Name</th>
                         <th>Type</th>
                     </tr>
                 </thead>
@@ -26,7 +26,7 @@ if (loading) {
                             <td>
                                 <img src={p.sprites.front_default} alt={p.name}></img>
                             </td>
-                            <td>{p.name}</td>
+                            <td>{p.japaneseName}</td>
                             <td>{p.name}</td>
                             <td>{p.name}</td>
                         </tr>
