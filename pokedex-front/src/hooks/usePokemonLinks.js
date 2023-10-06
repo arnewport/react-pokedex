@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function usePokemonLinks() {
+export default function usePokemonLinks(position) {
 
   // all we need to do is create a hook or something to manipulate position
   // when position changes, call updateLinks
@@ -10,7 +10,6 @@ export default function usePokemonLinks() {
   // manipulating position when pressed
 
   // position will probably have to be turned into an object or state or something
-  let position = 1;
 
   // variables
   const LIMIT = 10;
@@ -24,7 +23,7 @@ export default function usePokemonLinks() {
 
   // creates an array of links
   // array length = "LIMIT"
-  // array values range from "position" to "position + LIMIT"
+  // array values range from "position" to "position + LIMIT - 1"
   const createLinks = (baseURL) =>
     Array.from({ length: LIMIT }, (_, i) => baseURL + (position + i));
 

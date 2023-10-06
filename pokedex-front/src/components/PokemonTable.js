@@ -2,7 +2,7 @@ import usePokemonLinks from '../hooks/usePokemonLinks';
 
 function PokemonTable() {
 
-    const [pokemonArray, loading] = usePokemonLinks();
+    const [pokemonArray, loading] = usePokemonLinks(1);
    
 if (loading) {
     return null;
