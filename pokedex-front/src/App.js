@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './components/Header';
 
 import PokemonTable from "./components/PokemonTable";
+import PaginatedItems from "./components/PaginatedItems";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         <Header />
       <main className="container">
         <Routes>
-          <Route path="/" element={<PokemonTable />} />
+          <Route path="/" element={<PaginatedItems />} />
         </Routes>
       </main>
     </Router>

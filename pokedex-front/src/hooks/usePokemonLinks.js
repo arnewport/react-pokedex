@@ -80,5 +80,6 @@ export default function usePokemonLinks(position) {
   }, [linkArray]);
 
   // return pokemon data to components
-  return [pokemonArray];
+  return [pokemonArray, loading];
 }
+
