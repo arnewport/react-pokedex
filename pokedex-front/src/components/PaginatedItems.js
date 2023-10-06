@@ -4,15 +4,11 @@ import ReactPaginate from 'react-paginate';
 import PokemonTable from './PokemonTable';
 import usePokemonLinks from '../hooks/usePokemonLinks';
 
-// Example items, to simulate fetching from another resources.
-// const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-
 function PaginatedItems() {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
   const [pokemonArray, loading] = usePokemonLinks(1);
-   
 
   const endOffset = itemOffset + 10;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
@@ -38,7 +34,7 @@ function PaginatedItems() {
         breakLabel="..."
         nextLabel="next >"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={15}
         pageCount={pageCount}
         previousLabel="< previous"
         renderOnZeroPageCount={null}
