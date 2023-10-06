@@ -2,7 +2,7 @@ import usePokemonLinks from '../hooks/usePokemonLinks';
 
 function PokemonTable() {
 
-    const [pokemonArray, loading] = usePokemonLinks("https://pokeapi.co/api/v2/pokemon?limit=10&offset=0");
+    const [pokemonArray, loading] = usePokemonLinks();
    
 if (loading) {
     return null;
@@ -12,19 +12,23 @@ if (loading) {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Id</th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
+                        <th>Number</th>
+                        <th>Picture</th>
+                        <th>Japanese</th>
+                        <th>English</th>
+                        <th>Type</th>
                     </tr>
                 </thead>
                 <tbody>
                     {pokemonArray.map(p => (
                         <tr key={p.id}>
-                            <td>{p.name}</td>
                             <td>{p.id}</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                <img src={p.sprites.front_default} alt={p.name}></img>
+                            </td>
+                            <td>{p.name}</td>
+                            <td>{p.name}</td>
+                            <td>{p.name}</td>
                         </tr>
                     ))}
                 </tbody>

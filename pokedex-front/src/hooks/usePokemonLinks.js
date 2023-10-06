@@ -1,60 +1,57 @@
 import { useEffect, useState } from "react";
 
-export default function usePokemonLinks(url) {
-    const [pokemonLinks, setPokemonLinks] = useState([]);
-    const [loading, setLoading] = useState(true); // Added loading state
+export default function usePokemonLinks() {
+  const LIMIT = 10;
+  const URL = "https://pokeapi.co/api/v2/pokemon/";
+  const JP_URL = "http://localhost:8080/api/pokemon/";
+  let position = 1;
 
-    const [pokemonArray, setPokemonArray] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [pokemonArray, setPokemonArray] = useState([]);
+  const [linkArray, setLinkArray] = useState({ pokeLinks: [], japaneseLinks: [] });
 
-    useEffect(() => {
-        const fetchPokemon = () => {
-            // Function to fetch data from a single URL
-            const fetchData = async (linkObject) => {
-                console.log(linkObject.url);
-                try {
-                  const response = await fetch(linkObject.url);
-                  if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                  }
-                  const data = await response.json();
-                  return data;
-                } catch (error) {
-                  console.error('Error fetching data:', error);
-                  throw error;
-                }
-            };
-        
-            // Use Promise.all to fetch data from all URLs concurrently
-            Promise.all(pokemonLinks.map(fetchData))
-              .then((data) => {
-                // dataArray will be an array of objects fetched from each URL
-                setPokemonArray(data);
-              })
-              .catch((error) => {
-                console.error('Error fetching data from one or more URLs:', error);
-              }).finally(() => setLoading(false));
-            }
-        if (pokemonLinks.length > 0) {
-            fetchPokemon();
+  const createLinks = (baseURL) =>
+    Array.from({ length: LIMIT }, (_, i) => baseURL + (position + i));
+
+  useEffect(() => {
+    // Set the initial link arrays
+    setLinkArray({
+      pokeLinks: createLinks(URL),
+      japaneseLinks: createLinks(JP_URL)
+    });
+  }, []);
+
+  useEffect(() => {
+    const fetchPokemon = async () => {
+      const fetchData = async (link) => {
+        const response = await fetch(link);
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.status}`);
         }
-      }, [pokemonLinks]); // Empty dependency array to run this effect only once on component mount
 
+        return response.json();
+      };
 
-    const fetchPokemonLinks = async () => {
-        const response = await fetch(url);
-        if (response.ok) {
-            const data = await response.json();
-            setPokemonLinks(data.results);
-        } else {
-            setPokemonLinks([]);
-        }
-        setLoading(false); // Set loading to false when API call is complete
+      try {
+        const pokeLinkResponse = await Promise.all(linkArray.pokeLinks.map(fetchData));
+        const japaneseLinkResponse = await Promise.all(linkArray.japaneseLinks.map(fetchData));
+
+        const combinedData = pokeLinkResponse.map((item, index) => ({
+          ...item,
+          japaneseName: japaneseLinkResponse[index].japaneseName
+        }));
+
+        setPokemonArray(combinedData);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
     };
 
-    useEffect(() => {
-        fetchPokemonLinks();
-    }, []);
+    fetchPokemon();
+  }, [linkArray]);
 
-    return [pokemonArray, loading]
-
+  return [pokemonArray, loading];
 }
