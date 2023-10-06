@@ -13,7 +13,7 @@ export default function usePokemonLinks() {
   let position = 1;
 
   // variables
-  const LIMIT = 10;
+  const LIMIT = 100;
   const URL = "https://pokeapi.co/api/v2/pokemon/";
   const JP_URL = "http://localhost:8080/api/pokemon/";
 

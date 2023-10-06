@@ -1,12 +1,7 @@
 import usePokemonLinks from '../hooks/usePokemonLinks';
+// import PaginatedItems from './PaginatedItems';  
 
-function PokemonTable() {
-
-    const [pokemonArray, loading] = usePokemonLinks();
-   
-if (loading) {
-    return null;
-}
+function PokemonTable({pokemonArray}) {
     return (
         <div>
             <table className="table table-striped">
@@ -33,6 +28,7 @@ if (loading) {
                     ))}
                 </tbody>
             </table >
+            {/* <PaginatedItems/> */}
         </div>
     );
 }
