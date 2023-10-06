@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function usePokemonLinks() {
+export default function usePokemonLinks(position) {
 
   // all we need to do is create a hook or something to manipulate position
   // when position changes, call updateLinks
@@ -10,10 +10,13 @@ export default function usePokemonLinks() {
   // manipulating position when pressed
 
   // position will probably have to be turned into an object or state or something
-  let position = 1;
 
   // variables
+<<<<<<< HEAD
   const LIMIT = 100;
+=======
+  const LIMIT = 151;
+>>>>>>> e38b9783890eeddfbb2c4c8807179b3f3e8b135f
   const URL = "https://pokeapi.co/api/v2/pokemon/";
   const JP_URL = "http://localhost:8080/api/pokemon/";
 
@@ -24,7 +27,7 @@ export default function usePokemonLinks() {
 
   // creates an array of links
   // array length = "LIMIT"
-  // array values range from "position" to "position + LIMIT"
+  // array values range from "position" to "position + LIMIT - 1"
   const createLinks = (baseURL) =>
     Array.from({ length: LIMIT }, (_, i) => baseURL + (position + i));
 
