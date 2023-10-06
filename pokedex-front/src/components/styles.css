@@ -7,6 +7,15 @@
   
 .header-title {
     font-size: 50px;
+    width: 100%;
+    border-bottom: 5px solid white;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+.header-title span {
+    background: #007bff;
+    padding: 0 10px;
+
 }
 
 .header-image {
