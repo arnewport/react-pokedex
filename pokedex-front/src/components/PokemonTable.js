@@ -1,5 +1,5 @@
 import usePokemonLinks from '../hooks/usePokemonLinks';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function PokemonTable() {
 
@@ -11,6 +11,11 @@ function PokemonTable() {
         position = (position > 142) ? 142 : (position < 1) ? 1 : position;
         console.log(position);
         return position;
+    }
+
+    const displayPokemonNumber = (number) => {
+        number = (number < 10) ? "#00" + number : (number < 100) ? "#0" + number : "#" + number;
+        return number;
     }
    
 if (loading) {
@@ -31,7 +36,7 @@ if (loading) {
                 <tbody>
                     {pokemonArray.map(p => (
                         <tr key={p.id}>
-                            <td>{p.id}</td>
+                            <td>{displayPokemonNumber(p.id)}</td>
                             <td>
                                 <img src={p.sprites.front_default} alt={p.name}></img>
                             </td>
