@@ -2,15 +2,6 @@ import { useEffect, useState } from "react";
 
 export default function usePokemonLinks(position) {
 
-  // all we need to do is create a hook or something to manipulate position
-  // when position changes, call updateLinks
-  // updateLinks will update the state and re-render altered components
-  // then all of the data presented on the screen will be updated
-  // so whatever buttons we create (for pagination or something) will be
-  // manipulating position when pressed
-
-  // position will probably have to be turned into an object or state or something
-
   // variables
   const LIMIT = 10;
   const URL = "https://pokeapi.co/api/v2/pokemon/";
@@ -37,7 +28,7 @@ export default function usePokemonLinks(position) {
 
   useEffect(() => {
     updateLinks();
-  }, []);
+  }, [position]);
 
   // fetch pokemon data to return
   useEffect(() => {

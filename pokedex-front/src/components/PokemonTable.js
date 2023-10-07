@@ -1,8 +1,17 @@
 import usePokemonLinks from '../hooks/usePokemonLinks';
+import { useEffect, useState } from "react";
 
 function PokemonTable() {
 
-    const [pokemonArray, loading] = usePokemonLinks(1);
+    const [position, setPosition] = useState(1);
+    const [pokemonArray, loading] = usePokemonLinks(position);
+
+    const alterPosition = (position, incrementor) => {
+        position = position + incrementor;
+        position = (position > 142) ? 142 : (position < 1) ? 1 : position;
+        console.log(position);
+        return position;
+    }
    
 if (loading) {
     return null;
@@ -33,6 +42,10 @@ if (loading) {
                     ))}
                 </tbody>
             </table >
+            <div className="position-fixed bottom-0 end-0 p-3">
+                <button className="btn btn-primary me-2" onClick={() => {setPosition(alterPosition(position, -10))}}>{'<'}</button>
+                <button className="btn btn-primary" onClick={() => {setPosition(alterPosition(position, 10))}}>{'>'}</button>
+            </div>
         </div>
     );
 }
