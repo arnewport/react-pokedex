@@ -18,9 +18,31 @@ function PokemonTable() {
         return number;
     }
 
-    const displayEnglishName = (name) => {
+    const displayCapitalizedName = (name) => {
         name = name.charAt(0).toUpperCase() + name.substring(1, name.length)
         return name;
+    }
+
+    const displayPokemonTypes = (types) => {
+        let type1, type2;
+        if (types.length === 2) {
+            type1 = types[0].type.name;
+            type2 = types[1].type.name;
+        } else {
+            type1 = types[0].type.name;
+        }
+
+        if (!type2) {
+            return displayCapitalizedName(type1);
+        }
+        return (
+            <div>
+              {displayCapitalizedName(type1)}
+              <br />
+              <br />
+              {displayCapitalizedName(type2)}
+            </div>
+          );
     }
    
 if (loading) {
@@ -30,7 +52,7 @@ if (loading) {
         <div>
             <table className="table table-striped">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>Number</th>
                         <th>Picture</th>
                         <th>Japanese Name</th>
@@ -40,14 +62,14 @@ if (loading) {
                 </thead>
                 <tbody>
                     {pokemonArray.map(p => (
-                        <tr key={p.id}>
+                        <tr key={p.id} class="align-middle text-center">
                             <td>{displayPokemonNumber(p.id)}</td>
                             <td>
                                 <img src={p.sprites.front_default} alt={p.name}></img>
                             </td>
                             <td>{p.japaneseName}</td>
-                            <td>{displayEnglishName(p.name)}</td>
-                            <td>{p.types[0].type.name.charAt(0).toUpperCase() + p.types[0].type.name.substring(1, p.name.length)}</td>
+                            <td>{displayCapitalizedName(p.name)}</td>
+                            <td>{displayPokemonTypes(p.types)}</td>
                         </tr>
                     ))}
                 </tbody>
