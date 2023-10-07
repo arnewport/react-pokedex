@@ -17,6 +17,11 @@ function PokemonTable() {
         number = (number < 10) ? "#00" + number : (number < 100) ? "#0" + number : "#" + number;
         return number;
     }
+
+    const displayEnglishName = (name) => {
+        name = name.charAt(0).toUpperCase() + name.substring(1, name.length)
+        return name;
+    }
    
 if (loading) {
     return null;
@@ -41,7 +46,7 @@ if (loading) {
                                 <img src={p.sprites.front_default} alt={p.name}></img>
                             </td>
                             <td>{p.japaneseName}</td>
-                            <td>{p.name.charAt(0).toUpperCase() + p.name.substring(1, p.name.length)}</td>
+                            <td>{displayEnglishName(p.name)}</td>
                             <td>{p.types[0].type.name.charAt(0).toUpperCase() + p.types[0].type.name.substring(1, p.name.length)}</td>
                         </tr>
                     ))}
