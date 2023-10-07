@@ -1,4 +1,7 @@
 import usePokemonLinks from '../hooks/usePokemonLinks';
+import Rate from './Rate';
+import { FaStar } from "react-icons/fa";
+import { Container, Radio, Rating } from "./RatingStyles";
 import { useState } from "react";
 
 function PokemonTable() {
@@ -52,17 +55,18 @@ if (loading) {
         <div>
             <table className="table table-striped">
                 <thead>
-                    <tr class="text-center">
+                    <tr className="text-center">
                         <th>Number</th>
                         <th>Picture</th>
                         <th>Japanese Name</th>
                         <th>English Name</th>
                         <th>Type(s)</th>
+                        <th>Rating</th>
                     </tr>
                 </thead>
                 <tbody>
                     {pokemonArray.map(p => (
-                        <tr key={p.id} class="align-middle text-center">
+                        <tr key={p.id} className="align-middle text-center">
                             <td>{displayPokemonNumber(p.id)}</td>
                             <td>
                                 <img src={p.sprites.front_default} alt={p.name}></img>
@@ -70,6 +74,16 @@ if (loading) {
                             <td>{p.japaneseName}</td>
                             <td>{displayCapitalizedName(p.name)}</td>
                             <td>{displayPokemonTypes(p.types)}</td>
+                            <td>
+                                <Rate />
+                                <Container>
+                                    <span>1.0 &nbsp;</span>
+                                    <FaStar 
+                                        color={"gold"}
+                                    />
+                                </Container>
+                                {/*                                    font-size={"1.5rem"}  */}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
