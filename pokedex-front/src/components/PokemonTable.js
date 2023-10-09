@@ -82,7 +82,6 @@ if (loading) {
                                         color={"gold"}
                                     />
                                 </Container>
-                                {/*                                    font-size={"1.5rem"}  */}
                             </td>
                         </tr>
                     ))}

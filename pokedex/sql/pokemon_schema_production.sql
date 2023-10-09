@@ -7,6 +7,13 @@ create table pokemon (
     japanese_name varchar(50) not null
 );
 
+create table ratings (
+    rating_id int primary key auto_increment,
+    id int,
+    rating int,
+    foreign key (id) references pokemon(id)
+);
+
 insert into pokemon 
 		(japanese_name) 
 	values

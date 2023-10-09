@@ -16,27 +16,29 @@ public class PokemonJdbcTemplateRepository implements PokemonRepository  {
     }
 
     @Override
-    public List<Pokemon> findAll() {
-        final String sql = """
-                select id, japanese_name
-                from pokemon;
-                """;
-        return jdbcTemplate.query(sql, new PokemonMapper());
-    }
-
-    @Override
     public Pokemon findById(int id) {
 
         final String sql = """
-                select id, japanese_name
-                from pokemon
-                where id = ?;
+                select ifnull(round(avg(r.rating), 2), 0) as averaged_rating,
+                p.id,
+                p.japanese_name
+                from pokemon p
+                left join ratings r on p.id = r.id
+                where p.id = ?;
                 """;
 
-        Pokemon pokemon = jdbcTemplate.query(sql, new PokemonMapper(), id).stream()
+        return jdbcTemplate.query(sql, new PokemonMapper(), id).stream()
                 .findFirst().orElse(null);
-
-        return pokemon;
     }
 
+    @Override
+    public int addRating(int id, int rating) {
+
+        final String sql = """
+                insert into ratings (id, rating)
+                values (?, ?);
+                """;
+
+        return jdbcTemplate.update(sql, id, rating);
+    }
 }

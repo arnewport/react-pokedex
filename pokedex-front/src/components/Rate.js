@@ -13,6 +13,7 @@ const Rate = () => {
                             value={givenRating}
                             onClick={() => {
                                 setRate(givenRating);
+                                
                             }}
                         />
                         <Rating>
