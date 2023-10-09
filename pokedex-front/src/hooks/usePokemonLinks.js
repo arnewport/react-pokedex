@@ -55,7 +55,8 @@ export default function usePokemonLinks(position) {
         // add the Japanese names to the primary Pokemon array
         const combinedData = pokeLinkResponse.map((item, index) => ({
           ...item,
-          japaneseName: japaneseLinkResponse[index].japaneseName
+          japaneseName: japaneseLinkResponse[index].japaneseName,
+          rating: japaneseLinkResponse[index].rating
         }));
 
         // update the Pokemon array we are returning with the fetched

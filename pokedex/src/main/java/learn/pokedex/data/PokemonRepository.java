@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface PokemonRepository {
     Pokemon findById(int id);
-
-    int addRating(int id, int rating);
+    void addRating(int id, int rating);
 }

@@ -2,6 +2,9 @@ package learn.pokedex.controllers;
 
 import learn.pokedex.domain.PokemonService;
 import learn.pokedex.models.Pokemon;
+import learn.pokedex.models.Rating;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +25,9 @@ public class PokemonController {
     }
 
     @PostMapping("/add")
-    public void addRating(@RequestParam("id") int id, @RequestParam("rating") int rating) {
-        service.addRating(id, rating);
+    public ResponseEntity<Object> addRating(@RequestBody Rating response) {
+        service.addRating(response.getId(), response.getRating());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

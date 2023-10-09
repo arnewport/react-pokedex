@@ -32,13 +32,13 @@ public class PokemonJdbcTemplateRepository implements PokemonRepository  {
     }
 
     @Override
-    public int addRating(int id, int rating) {
+    public void addRating(int id, int rating) {
 
         final String sql = """
                 insert into ratings (id, rating)
                 values (?, ?);
                 """;
 
-        return jdbcTemplate.update(sql, id, rating);
+        jdbcTemplate.update(sql, id, rating);
     }
 }

@@ -1,7 +1,13 @@
 @url = http://localhost:8080/api/pokemon
 
-GET {{url}} HTTP/1.1
+GET {{url}}/151 HTTP/1.1
 
 ###
 
-GET {{url}}/151 HTTP/1.1
+POST {{url}}/add
+Content-Type: application/json
+
+{
+    "id": 1,
+    "rating": 4
+}
