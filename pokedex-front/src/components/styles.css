@@ -1,0 +1,25 @@
+.header {
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    padding: 20px;
+    text-align: center;
+}
+  
+.header-title {
+    font-size: 50px;
+    width: 100%;
+    border-bottom: 5px solid white;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+.header-title span {
+    background: #007bff;
+    padding: 0 10px;
+
+}
+
+.header-image {
+    width: 35%; /* Set the width of the image to 50% of its parent container */
+  height: auto;
+
+}
