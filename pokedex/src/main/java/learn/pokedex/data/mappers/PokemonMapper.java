@@ -13,6 +13,7 @@ public class PokemonMapper implements RowMapper<Pokemon> {
         Pokemon pokemon = new Pokemon();
         pokemon.setId(resultSet.getInt("id"));
         pokemon.setJapaneseName(resultSet.getString("japanese_name"));
+        pokemon.setRating(resultSet.getDouble("averaged_rating"));
 
         return pokemon;
     }

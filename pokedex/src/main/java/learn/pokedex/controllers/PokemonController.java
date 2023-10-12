@@ -2,10 +2,10 @@ package learn.pokedex.controllers;
 
 import learn.pokedex.domain.PokemonService;
 import learn.pokedex.models.Pokemon;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import learn.pokedex.models.Rating;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,13 +19,15 @@ public class PokemonController {
         this.service = service;
     }
 
-    @GetMapping
-    public List<Pokemon> findAll() {
-        return service.findAll();
-    }
-
     @GetMapping("/{id}")
     public Pokemon findById(@PathVariable int id) {
         return service.findById(id);
     }
+
+    @PostMapping("/add")
+    public ResponseEntity<Object> addRating(@RequestBody Rating response) {
+        service.addRating(response.getId(), response.getRating());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
